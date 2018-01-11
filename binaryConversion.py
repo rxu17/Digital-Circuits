@@ -1,5 +1,7 @@
 #This algorithm will (attempt) to convert regular numbers to binary numbers
 
+import re 
+
 ct2 = 0
 
 def int_to_binary(integer):
@@ -16,7 +18,12 @@ def int_to_binary(integer):
       
 
 print("Please enter a binary number")
-binary = raw_input(">")
+binary = input(">")
+# catching cases when the entered value is not what we want
+while binary.isnumeric() != True and bool(re.match('^[10]+$', binary)) != True:
+    print("Please enter a binary number")
+    binary = input(">")
+    
 
 def largest_power_of_2(num):
     s = 2
@@ -37,8 +44,7 @@ def binary_to_int(binary):
             count -= 1      
         else:
             print("This is not a binary number. Try again")
-            break
-    
+            break   
     return integer
     
 print(binary_to_int(binary))
